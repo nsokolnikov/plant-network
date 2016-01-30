@@ -22,3 +22,4 @@ dburles:collection-helpers
 accounts-google
 kadira:flow-router
 accounts-ui
+kadira:blaze-layout

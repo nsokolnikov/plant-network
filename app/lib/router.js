@@ -1,6 +1,7 @@
-FlowRouter.route('/blog/:postId', {
+FlowRouter.route('/plants/', {
     action: function(params, queryParams) {
-        console.log("Yeah! We are on the post:", params.postId);
+        BlazeLayout.render('listTemplate', {content: 'plantList'});
+        console.log("Yeah! We are on the post:", params);
     }
 });
 
