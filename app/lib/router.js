@@ -1,37 +1,53 @@
-FlowRouter.route('/plants', {
-    action: function(params, queryParams) {
-        BlazeLayout.render('mainLayout', {content: 'plantList'});
-        console.log("Yeah! We are on the post:", params);
+function checkLoggedIn (ctx, redirect) {
+    if (!Meteor.userId()) {
+        redirect('/login');
+    }
+}
+
+function redirectIfLoggedIn (ctx, redirect) {
+    var _id = Meteor.user();
+    if (_id) {
+        redirect('/'+ _id +'/plants');
+    }
+}
+
+var exposed = FlowRouter.group();
+
+exposed.route('/login', {
+    name: "login",
+    action: function(params, queryParams){
+        BlazeLayout.render('mainLayout', {content: 'atForm'})
     }
 });
 
-FlowRouter.route('/_oauth/google', {
+var privateRoutes = FlowRouter.group({
+    name: 'private',
+    triggersEnter: [
+        checkLoggedIn
+    ]
+});
+
+privateRoutes.route('/:user_id/plants', {
     action: function(params, queryParams) {
-        console.log(queryParams);
+        BlazeLayout.render('mainLayout', {content: 'plantList'}, function(err, succ) {
+            if(err) {
+                console.log(err);
+            }
+        });
     }
 });
 
-FlowRouter.route('/nearby', {
+privateRoutes.route('/:user_id/nearby', {
     action: function(params, queryParams) {
         BlazeLayout.render('plantMapTemplate', {content: 'plantMapTemplate'});
     }
 });
 
-FlowRouter.route('/', {
-    action: function(params, queryParams){
-        BlazeLayout.render('mainLayout',{content: 'plantNetwork'})
-    }
-});
-
-
-
-FlowRouter.route('/login', {
-    name: "login",
-    action: function(params, queryParams){
-    BlazeLayout.render('mainLayout', {content: 'atForm'})
-    }
-});
-
 Accounts.onLogin(function(user) {
-
+    var path = FlowRouter.current().path;
+    // we only do it if the user is in the login page
+    if(path === "/login"){
+        FlowRouter.go('/' + Meteor.userId() + '/plants');
+    }
 });
+
