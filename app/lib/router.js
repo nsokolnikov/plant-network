@@ -5,6 +5,12 @@ FlowRouter.route('/plants', {
     }
 });
 
+FlowRouter.route('/_oauth/google', {
+    action: function(params, queryParams) {
+        console.log(queryParams);
+    }
+});
+
 FlowRouter.route('/nearby', {
     action: function(params, queryParams) {
         BlazeLayout.render('plantMapTemplate', {content: 'plantMapTemplate'});
@@ -24,4 +30,8 @@ FlowRouter.route('/login', {
     action: function(params, queryParams){
     BlazeLayout.render('mainLayout', {content: 'atForm'})
     }
+});
+
+Accounts.onLogin(function(user) {
+
 });
