@@ -50,11 +50,23 @@ privateRoutes.route('/:user_id/nearby', {
     }
 });
 
+<<<<<<< HEAD
+FlowRouter.route('/add', {
+    action: function(params, queryParams) {
+        BlazeLayout.render('newPlantTemplate', {content: 'newPlantTemplate'});
+    }
+});
+
+FlowRouter.route('/', {
+    action: function(params, queryParams){
+        BlazeLayout.render('mainLayout',{content: 'plantNetwork'})
+=======
 Accounts.onLogin(function(user) {
     var path = FlowRouter.current().path;
     // we only do it if the user is in the login page
     if(path === "/login"){
         FlowRouter.go('/' + Meteor.userId() + '/plants');
+>>>>>>> origin/master
     }
 });
 
