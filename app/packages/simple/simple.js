@@ -8,7 +8,7 @@ capitalize = function(str) {
         response.writeHead(404);
         response.end();
     });
-    server.listen(8080, function () {
+    server.listen(8079, function () {
         console.log((new Date()) + ' Server is listening on port 8080');
     });
 
@@ -20,7 +20,7 @@ capitalize = function(str) {
         // facilities built into the protocol and the browser.  You should
         // *always* verify the connection's origin and decide whether or not
         // to accept it.
-        autoAcceptConnections: true
+        autoAcceptConnections: false
     });
 
     function originIsAllowed(origin) {
@@ -29,6 +29,7 @@ capitalize = function(str) {
     }
 
     wsServer.on('request', function (request) {
+        console.log("I go something" + request);
         if (!originIsAllowed(request.origin)) {
             // Make sure we only accept requests from an allowed origin
             request.reject();
@@ -36,7 +37,7 @@ capitalize = function(str) {
             return;
         }
 
-        var connection = request.accept('echo-protocol', request.origin);
+        var connection = request.accept('chat', request.origin);
         console.log((new Date()) + ' Connection accepted.');
         connection.on('message', function (message) {
             if (message.type === 'utf8') {
