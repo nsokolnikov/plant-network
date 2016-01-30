@@ -9,3 +9,10 @@ FlowRouter.route('/', {
 
     }
 });
+
+FlowRouter.route('/login/', {
+    name: "login",
+    action: function(params, queryParams){
+        console.log("login page!");
+    }
+})
