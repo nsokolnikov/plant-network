@@ -11,6 +11,6 @@ Measurements.helpers({
     },
 
     'getMeasurementsForTime' : function(low,high,user_id){
-        return Measurements.find({user_id: user_id,time:{$gt:low, $lt:2}},{sort: {time: -1}}).fetch();
+        return Measurements.find({user_id: user_id,time:{$gt:low, $lt:high}},{sort: {time: -1}}).fetch();
     }
 });
