@@ -1,10 +1,10 @@
 Template.newPlantTemplate.events({
     'click .hiddenFileInputContainter img':function(event) {
-        event.stopPropagation();
-
-        var input = $('.hidden');
-
+        var input = $('#flupld');
         input.click(event);
+    },
+    'change #flupld':function(){
+      console.log('Text');
     },
     'click .main-button':function(event) {
         console.log('clicked');
@@ -14,7 +14,7 @@ Template.newPlantTemplate.events({
         console.log("sumbit clicked");
         event.stopPropagation();
     },
-    'click a':function() {
+    'click a':function()  {
         function showPosition(position) {
             var location = $('#location');
             var label = $('#locationLabel');
