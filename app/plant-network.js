@@ -1,5 +1,4 @@
 
-
 if (Meteor.isClient) {
 
     Template.registerHelper("debug", function (debugStuff) {
