@@ -6,7 +6,6 @@ Template.body.helpers({
 
 Template.body.events({
     "click": function() {
-        console.log(this);
         Session.set('currentPopup',this);
         AntiModals.overlay('plantPopup',{})
     }

@@ -20,6 +20,12 @@ Meteor.methods({
         console.log("Test")
     },
 
+    'addSomeTestMeasurements': function() {
+      for (var i = 0; i < 10; i++) {
+          Meteor.call('addNewMeasurement',i,0,1,i*10);
+      }
+    },
+
     'getMeasurementsForTime': function (low, high, user_id) {
         return Measurements.find({user_id: user_id, time: {$gt: low, $lt: high}}, {sort: {time: -1}}).fetch();
     }
