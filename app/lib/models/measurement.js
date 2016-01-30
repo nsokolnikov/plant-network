@@ -28,5 +28,8 @@ Meteor.methods({
 
     'getMeasurementsForTime': function (low, high, user_id) {
         return Measurements.find({user_id: user_id, time: {$gt: low, $lt: high}}, {sort: {time: -1}}).fetch();
+    },
+    'getAllMeasurements': function(){
+        return Measurements.findAll();
     }
 });
