@@ -1,7 +1,7 @@
 Template.listTemplate.helpers({
     users: function() {
-        return Users.find();
-    }meteo
+        return Users.find({});
+    }
 });
 
 Template.listTemplate.events({
