@@ -20,7 +20,7 @@ capitalize = function(str) {
         // facilities built into the protocol and the browser.  You should
         // *always* verify the connection's origin and decide whether or not
         // to accept it.
-        autoAcceptConnections: false
+        autoAcceptConnections: true
     });
 
     function originIsAllowed(origin) {
@@ -49,7 +49,7 @@ capitalize = function(str) {
             }
         });
         connection.on('close', function (reasonCode, description) {
-            console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnected.');
+            console.log((new Date()) + ' Peer ' + connection.remoteAddress + ' disconnecteed.');
         });
     });
 
