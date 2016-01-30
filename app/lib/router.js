@@ -13,6 +13,13 @@ function redirectIfLoggedIn (ctx, redirect) {
 
 var exposed = FlowRouter.group();
 
+exposed.route('/',{
+    name: "landing",
+    action: function(params, queryParams){
+
+    }
+})
+
 exposed.route('/login', {
     name: "login",
     action: function(params, queryParams){
