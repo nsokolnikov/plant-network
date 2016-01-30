@@ -1,4 +1,4 @@
-Tasks = new Mongo.Collection("tasks");
+Users = new Mongo.Collection("users");
 
 
 if (Meteor.isClient) {
@@ -12,6 +12,10 @@ if (Meteor.isClient) {
             {text: "This is task 3"}
         ]
     });
+
+
+
+
     Template.hello.helpers({
         counter: function () {
             return Session.get('counter');
@@ -22,6 +26,9 @@ if (Meteor.isClient) {
         'click button': function () {
             // increment the counter when button is clicked
             Session.set('counter', Session.get('counter') + 1);
+            Users.insert({name: prompt("Enter name")});
+
+
         }
     });
 }
