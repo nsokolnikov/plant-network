@@ -1,6 +1,6 @@
 Template.listTemplate.helpers({
     users: function() {
-        return Users.find({});
+        return Users.find();
     }
 });
 
