@@ -1,0 +1,14 @@
+ {
+    "client_id": "477151954428-9hhfuadj8j44ih96brmlt9keh52hj3i9.apps.googleusercontent.com",
+    "project_id": "hackplanties",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://accounts.google.com/o/oauth2/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "yk78nn07SUMacKACEkOiFBpb",
+    "redirect_uris": [
+      "https://localhost:3000/login"
+    ],
+    "javascript_origins": [
+      "https://localhost:3000"
+    ]
+  }

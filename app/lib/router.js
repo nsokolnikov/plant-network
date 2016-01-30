@@ -1,19 +1,21 @@
-FlowRouter.route('/plants/', {
+FlowRouter.route('/plants', {
     action: function(params, queryParams) {
-        BlazeLayout.render('listTemplate', {content: 'plantList'});
+        BlazeLayout.render('mainLayout', {content: 'plantList'});
         console.log("Yeah! We are on the post:", params);
     }
 });
 
 FlowRouter.route('/', {
     action: function(params, queryParams){
-
+        BlazeLayout.render('mainLayout',{content: 'plantNetwork'})
     }
 });
 
-FlowRouter.route('/login/', {
+
+
+FlowRouter.route('/login', {
     name: "login",
     action: function(params, queryParams){
-        console.log("login page!");
+    BlazeLayout.render('mainLayout', {content: 'atForm'})
     }
-})
+});
