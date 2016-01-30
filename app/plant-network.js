@@ -1,5 +1,5 @@
 Users = new Mongo.Collection("users");
-
+Measurements = new Mongo.Collection("measurements");
 
 if (Meteor.isClient) {
     // counter starts at 0
@@ -27,10 +27,21 @@ if (Meteor.isClient) {
             // increment the counter when button is clicked
             Session.set('counter', Session.get('counter') + 1);
             Users.insert({name: prompt("Enter name")});
-
-
         }
     });
+}
+
+if (Meteor.isServer) {
+    Meteor.methods({
+        'addNewMeasurement' : function(time,plant_id,type,data) {
+            Measurements.insert({
+                time:time,
+                plant_id:plant_id,
+                type:type,
+                data:data
+            })
+        }
+    })
 }
 Meteor.startup(function () {
     if (Meteor.isServer) {
