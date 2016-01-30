@@ -7,6 +7,7 @@
 
 #include <Arduino.h>
 
+#include <Esp.h>
 //#include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
@@ -17,7 +18,7 @@
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
 
-bool active = true;
+//bool active = true;
 
 #define SERIAL Serial
 
@@ -25,6 +26,8 @@ bool active = true;
 #define GP2 2
 #define GREEN_BUTTON 0
 #define CAPACITOR 2
+
+uint32_t hwid;
 
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     switch(type) {
@@ -75,6 +78,15 @@ const char* beep() {
     return &beep_buffer[0];
 }
 
+String make_soil_json(long mms) {
+    String json = "{";
+    json += "\"hwid\":"; json += hwid; json += ",";
+    json += "\"type\":\"soil_moisture\",";
+    json += "\"data\":"; json += mms;// json += ",";
+    json += "}";
+    return json;
+}
+
 /* delayMicroseconds
 void sleep_micros(unsigned long mms) {
     unsigned long end = micros()+mms;
@@ -89,7 +101,11 @@ void setup() {
     
     SERIAL.printf("\n%s. PLANT-BOT HAS BOOTED UP AND GAINED SENTIENCE.\n", beep());
 
-    WiFiMulti.addAP("WinterfellOTG", "THEothers");
+    hwid = ESP.getChipId();
+
+    //SERIAL.print(ESP.getChipId());
+
+    WiFiMulti.addAP("themothership", "colinpeter");
     SERIAL.printf("ESTABLISHING CONNECTION TO MOTHERSHIP...\n");
 
     while(WiFiMulti.run() != WL_CONNECTED) {
@@ -102,7 +118,7 @@ void setup() {
 
     SERIAL.printf("CONNECTION ESTABLISHED. BEGINNING GROUND INVASION.\n");
 
-    webSocket.begin("192.168.43.132", 80);
+    webSocket.begin("192.168.43.132", 3000, "/sensorData");
     webSocket.onEvent(webSocketEvent);
 }
 
@@ -115,9 +131,9 @@ void loop() {
     delayMicroseconds(1000*1000);
 
 
-    unsigned long startm;
-    unsigned long endm;
-    unsigned long bailout;
+    uint64_t startm;
+    uint64_t endm;
+    uint64_t bailout;
     
     pinMode(CAPACITOR, INPUT);
     startm = micros();
@@ -129,7 +145,10 @@ void loop() {
     String message = "";
     if (endm < bailout) {
         long diff = endm - startm;
-        long wet = 150L;
+
+        message = make_soil_json(diff);
+        
+        /*long wet = 150L;
         long dry = 3200L;
         double wetness = 100.0 * (1.0 - double(diff - wet)/double(dry - wet));
         
@@ -148,10 +167,10 @@ void loop() {
             message += "\nProbably very dry!";
         } else {
             message += "\nProbably very wet!";
-        }
+        }*/
         webSocket.sendTXT(message);
     } else {
-        webSocket.sendTXT("Bailed out!\nYou probably don't have any dirt!");
+        webSocket.sendTXT(make_soil_json(-1));
     }
     
     
