@@ -4,6 +4,5 @@ Template.plantList.helpers({
 
 Template.plantList.events({
     'click .plant': function(event, template) {
-        console.log(this);
     }
 });
