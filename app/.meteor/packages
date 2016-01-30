@@ -28,5 +28,4 @@ materialize:materialize
 useraccounts:materialize
 service-configuration
 jakozaur:websockify
-nsokolnikov:simple
 joncursi:socket-io-client
