@@ -13,6 +13,13 @@ function redirectIfLoggedIn(ctx, redirect) {
 
 var exposed = FlowRouter.group();
 
+exposed.route('/',{
+    name: "landing",
+    action: function(params, queryParams){
+
+    }
+})
+
 exposed.route('/login', {
     name: "login",
     action: function (params, queryParams) {
@@ -54,12 +61,12 @@ FlowRouter.route('/', {
         BlazeLayout.render('mainLayout', {content: 'plantNetwork'})
     }
 });
-
-Accounts.onLogin(function (user) {
-    var path = FlowRouter.current().path;
-    // we only do it if the user is in the login page
-    if (path === "/login") {
-        FlowRouter.go('/' + Meteor.userId() + '/plants');
-    }
-});
-
+if(Meteor.isClient) {
+    Accounts.onLogin(function (user) {
+        var path = FlowRouter.current().path;
+        // we only do it if the user is in the login page
+        if (path === "/login") {
+            FlowRouter.go('/' + Meteor.userId() + '/plants');
+        }
+    });
+}
