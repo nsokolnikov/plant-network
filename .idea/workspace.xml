@@ -3,9 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="51ac1574-1053-4595-81ec-a60788ff6e1c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/.meteor/.gitignore" afterPath="$PROJECT_DIR$/app/.meteor/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/client/listTemplate/listTempalte.html" afterPath="$PROJECT_DIR$/app/client/listTemplate/listTempalte.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/lib/models/measurement.js" afterPath="$PROJECT_DIR$/app/lib/models/measurement.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/plant-network.js" afterPath="$PROJECT_DIR$/app/plant-network.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/client/listTemplate/listTemplate.js" afterPath="$PROJECT_DIR$/app/client/listTemplate/listTemplate.js" />
     </list>
     <ignored path="plant-network.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,19 +51,27 @@
         <entry file="file://$PROJECT_DIR$/app/client/listTemplate/listTemplate.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-              <folding>
-                <marker date="1454133348000" expanded="true" signature="30:94" placeholder="{...}" />
-              </folding>
+              <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="listTempalte.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".id" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/.meteor/.id">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="listTempalte.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/client/listTemplate/listTempalte.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.078397214">
-              <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+            <state vertical-scroll-proportion="-1.875">
+              <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -99,11 +107,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/.meteor/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
+            <state vertical-scroll-proportion="1.0284281">
+              <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -130,12 +138,12 @@
         <option value="$PROJECT_DIR$/app/lib/models/plant.js" />
         <option value="$PROJECT_DIR$/app/lib/models/user.js" />
         <option value="$PROJECT_DIR$/app/seadUsers.js" />
-        <option value="$PROJECT_DIR$/app/client/listTemplate/listTemplate.js" />
         <option value="$PROJECT_DIR$/app/plant-network.html" />
-        <option value="$PROJECT_DIR$/app/.meteor/.gitignore" />
         <option value="$PROJECT_DIR$/app/lib/models/measurement.js" />
         <option value="$PROJECT_DIR$/app/plant-network.js" />
         <option value="$PROJECT_DIR$/app/client/listTemplate/listTempalte.html" />
+        <option value="$PROJECT_DIR$/app/client/listTemplate/listTemplate.js" />
+        <option value="$PROJECT_DIR$/app/.meteor/.gitignore" />
       </list>
     </option>
   </component>
@@ -407,36 +415,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/client/listTemplate/listTemplate.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <marker date="1454133348000" expanded="true" signature="30:94" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/plant-network.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-6.875">
           <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/.meteor/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1" column="5" selection-start-line="1" selection-start-column="5" selection-end-line="1" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/plant-network.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -451,8 +433,40 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/client/listTemplate/listTempalte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.078397214">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+        <state vertical-scroll-proportion="-1.875">
+          <caret line="3" column="30" selection-start-line="3" selection-start-column="30" selection-end-line="3" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/plant-network.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="2" column="31" selection-start-line="2" selection-start-column="31" selection-end-line="2" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/client/listTemplate/listTemplate.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/.meteor/.id">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/.meteor/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.0284281">
+          <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding />
         </state>
       </provider>
