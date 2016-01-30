@@ -8,5 +8,9 @@ Measurements.helpers({
             type:type,
             data:data
         })
+    },
+
+    'getMeasurementsForTime' : function(low,high,user_id){
+        return Measurements.find({user_id: user_id,time:{$gt:low, $lt:2}},{sort: {time: -1}}).fetch();
     }
 });
