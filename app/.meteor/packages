@@ -29,3 +29,5 @@ useraccounts:materialize
 service-configuration
 jakozaur:websockify
 nsokolnikov:simple
+dburles:google-maps
+mdg:geolocation

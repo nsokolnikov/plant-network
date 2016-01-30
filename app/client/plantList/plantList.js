@@ -5,6 +5,6 @@ Template.plantList.helpers({
 Template.plantList.events({
     'click .plant': function(event, template) {
         Session.set('currentPopup',this);
-        AntiModals.overlay('plantPopup',{})
+        AntiModals.overlay('plantPopup',{});
     }
 });

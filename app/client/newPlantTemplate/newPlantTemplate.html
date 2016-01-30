@@ -1,0 +1,59 @@
+<template name="newPlantTemplate">
+    <main id="container">
+        <h2>Adding new plant</h2>
+
+        <div class="hiddenFileInputContainter">
+            <img class="fileDownload" src="http://fourdesire.com/assets/plantnanny/plant.png">
+            <input type="file" name="fileUp" class="hidden" accept="image/*">
+        </div>
+        <div class="container">
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="nickname" type="text" class="validate">
+                            <label for="nickname">Nickname</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="serial" type="text" class="validate">
+                            <label for="serial">Serial</label>
+                        </div>
+                    </div>
+                    <!--<div class="row">-->
+                        <!--<input type="date" class="datepicker">-->
+                        <!--<label for="date">Birthday</label>-->
+                    <!--</div>-->
+                    <div class="row">
+                        <div class="col s6">
+                            <a class="waves-effect waves-light btn-large">Add location</a>
+                        </div>
+                        <div class="input-field col s6">
+                            <input id="location"  type="text" class="validate">
+                            <label id="locationLabel" for="location">Location</label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="layered-content">
+            <div class="icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="72px" height="72px">
+                    <g fill="none" stroke="#FF0000" stroke-width="3">
+                        <circle cx="36" cy="36" r="35" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
+                        <path d="M17.417,37.778l9.93,9.909l25.444-25.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
+                    </g>
+                </svg>
+            </div>
+            <button class="close-button fa fa-times"></button>
+            <div class="content">
+                <img src="https://d13yacurqjgara.cloudfront.net/users/332135/avatars/normal/52d614ee44e3e21d2b73894c465773d7.png" alt="Balapa">
+                <p>Crafted by balapa.</p>
+                <p>See also my <a href="http://codepen.io/balapa/details/gbQbXR/">other pen</a></p>
+            </div>
+        </div>
+    </main>
+</template>

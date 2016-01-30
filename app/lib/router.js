@@ -11,6 +11,12 @@ FlowRouter.route('/nearby', {
     }
 });
 
+FlowRouter.route('/add', {
+    action: function(params, queryParams) {
+        BlazeLayout.render('newPlantTemplate', {content: 'newPlantTemplate'});
+    }
+});
+
 FlowRouter.route('/', {
     action: function(params, queryParams){
         BlazeLayout.render('mainLayout',{content: 'plantNetwork'})
