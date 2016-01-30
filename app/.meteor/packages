@@ -21,3 +21,5 @@ insecure                # Allow all DB writes from clients (for prototyping)
 dburles:collection-helpers
 anti:modals
 accounts-google
+kadira:flow-router
+accounts-ui
