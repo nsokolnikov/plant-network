@@ -128,10 +128,10 @@ void loop() {
 
     String message = "";
     if (endm < bailout) {
-        unsigned long diff = endm - startm;
-        unsigned long wet = 150L;
-        unsigned long dry = 3200L;
-        double wetness = 100.0 * (1.0 - double(diff - wet)/double(dry-wet));
+        long diff = endm - startm;
+        long wet = 150L;
+        long dry = 3200L;
+        double wetness = 100.0 * (1.0 - double(diff - wet)/double(dry - wet));
         
         //Took diff micros!
         message += "Discharged in ";
