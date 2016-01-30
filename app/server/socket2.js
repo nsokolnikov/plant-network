@@ -6,8 +6,9 @@ function MyWebSocketHandler(url, ws) {
     ws.on('message', Meteor.bindEnvironment(function (msg) {
         console.log(JSON.parse(msg.data));
         var json = JSON.parse(msg.data);
-        Meteor.call('addNewMeasurement', json.time, json.plant_id, json.type, json.data);
-        console.log(Meteor.call('getAllMeasurements'));
+        console.log(Date.now());
+        Meteor.call('addNewMeasurement', Date.now(), json.hwid, json.type, json.data);
+//        console.log(Meteor.call('getAllMeasurements'));
     }));
     ws.on('close', Meteor.bindEnvironment(function () {
 
