@@ -7,7 +7,7 @@ FlowRouter.route('/plants', {
 
 FlowRouter.route('/nearby', {
     action: function(params, queryParams) {
-        BlazeLayout.render('plantNearby', {content: 'plantList'});
+        BlazeLayout.render('plantMapTemplate', {content: 'plantMapTemplate'});
     }
 });
 

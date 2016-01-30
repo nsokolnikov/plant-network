@@ -1,3 +1,10 @@
 <template name="plantMapTemplate">
-
+    <head>
+        <title>Todo List</title>
+    </head>
+    <body>
+    {{#each plants}}
+        {{> plantAnnotation}}
+    {{/each}}
+    </body>
 </template>
