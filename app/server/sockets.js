@@ -1,4 +1,4 @@
-var socket = io('http://192.168.43.92:8080/');
+/*var socket = io('http://192.168.43.132:8080/');
 Tasks = new Mongo.Collection("tasks");
 Tasks.insert({id: "thecounter", counter: 0});
 
@@ -45,4 +45,4 @@ socket.on('connect', Meteor.bindEnvironment(function() {
 
 }, function(e) {
     throw e;
-}));
+}));*/

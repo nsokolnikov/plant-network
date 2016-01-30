@@ -1,7 +1,11 @@
 
 function MyWebSocketHandler(url, ws) {
+    ws.on('open', Meteor.bindEnvironment(function (msg) {
+        console.log("Connection!");
+    }));
     ws.on('message', Meteor.bindEnvironment(function (msg) {
-        console.log(msg.text);
+        console.log(msg.data);
+        console.log(JSON.parse(msg.data));
     }));
     ws.on('close', Meteor.bindEnvironment(function () {
 
@@ -11,4 +15,5 @@ function MyWebSocketHandler(url, ws) {
     }));
 }
 server = new WebSocketServer('/sensorData', Meteor.bindEnvironment(MyWebSocketHandler));
+
 
