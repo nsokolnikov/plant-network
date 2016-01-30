@@ -6,6 +6,9 @@ Template.body.helpers({
 
 Template.body.events({
     "click": function() {
-        AntiModals.alert('Test');
+        AntiModals.overlay('plantPopup',{
+            url:this.url,
+            owner:this.user_id
+        });
     }
 })
