@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
 
-    Template.registerHelper("dialogBoxOptions", function (debugStuff) {
+    Template.registerHelper("debug", function (debugStuff) {
         return console.log(debugStuff);
     });
 
