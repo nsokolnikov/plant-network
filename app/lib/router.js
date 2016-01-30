@@ -5,6 +5,12 @@ FlowRouter.route('/plants', {
     }
 });
 
+FlowRouter.route('/nearby', {
+    action: function(params, queryParams) {
+        BlazeLayout.render('plantNearby', {content: 'plantList'});
+    }
+});
+
 FlowRouter.route('/', {
     action: function(params, queryParams){
         BlazeLayout.render('mainLayout',{content: 'plantNetwork'})
