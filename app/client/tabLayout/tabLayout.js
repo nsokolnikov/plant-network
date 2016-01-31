@@ -10,5 +10,9 @@ Template.tabLayout.events({
         if(FlowRouter.current().path !== pathRedirect) {
             FlowRouter.go(pathRedirect);
         }
+    },
+    'click .logout': function(event, template) {
+        Accounts.logout();
+        FlowRouter.go('/');
     }
 });

@@ -38,7 +38,7 @@ Template.plantList.helpers({
     },
     route: function() {
         var pathRedirect = '/' + Meteor.userId() + '/nearby';
-        if(Template.instanc().route.get() === pathRedirect) {
+        if (Template.instance().route.get() === pathRedirect) {
             return true;
         } else {
             return false;
