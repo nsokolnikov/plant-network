@@ -7,6 +7,11 @@ Plant.helpers({
     },
     incrementLevel: function() {
         Meteor.call('incrementLevel', this.user_id);
+    },
+    picture: function() {
+        return Meteor.call('picture', this.picture_id, function(err, succ) {
+
+        })
     }
 });
 
@@ -14,6 +19,9 @@ Meteor.methods({
     incremenetLevel: function(user_id) {
        Plant.update(user_id, {$inc: {level: 1}});
    },
+    picture: function(id) {
+      return Images.findOne({image_id:id});
+    },
     insertTestPlants :function(){
         Plant.insert({
             level: 0,
