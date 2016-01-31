@@ -1,5 +1,6 @@
 Template.plantPopup.helpers({
   info: function(){
+      console.log(Session.get('currentPopup'));
       return Session.get('currentPopup');
   },
     latestMoisture: function(plant_id){

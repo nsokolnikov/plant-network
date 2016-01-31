@@ -31,7 +31,6 @@ function close() {
     $buttonWrapper.removeClass("clicked");
     $ripple.removeClass("rippling");
     $layer.removeClass("active");
-    createNewPlant();
 }
 
 function showCheckmark() {
