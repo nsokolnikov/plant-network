@@ -38,6 +38,9 @@ Meteor.methods({
     'getMeasurementsForTime': function (low, high, user_id) {
         return Measurements.collection.find({user_id: user_id, time: {$gt: low, $lt: high}}, {sort: {time: -1}}).fetch();
     },
+    'getLast50Measurements': function (low, high, plant_id) {
+        return Measurements.collection.find({plant_id:plant_id}, {sort: {time: -1}, limit:50}).fetch();
+    },
     'getAllMeasurements': function(){
         return Measurements.collection.find({}, {sort:{createdAt:1}, limit:10}).fetch();
     }
