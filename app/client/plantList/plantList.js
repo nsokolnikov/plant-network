@@ -21,7 +21,7 @@ Template.plantList.helpers({
         return Plant.findOne(this._id).picture().url;
     },
     office: function() {
-        return Plant.find(this.office);
+        return Plant.find(this.location);
     }
 });
 
