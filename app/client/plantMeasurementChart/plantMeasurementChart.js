@@ -18,7 +18,6 @@ function insertNewPoint() {
     x=[];
     data=[];
     insertPoints(points);
-    updateData();
 }
 
 function insertPoints(points) {
