@@ -27,13 +27,13 @@ uint64_t last_capacitor = 0L;
 
 uint32_t hwid;
 
-//#define ENABLE_LED
+#define ENABLE_LED
 //#define BUILTIN_LED dont use this its already defined
 
 #ifdef ENABLE_LED
   #define dbg_printf(...) while(0) {}
   #define dbg_initserial(rate) while(0) {}
-  #define init_LED() pinMode(BUILTIN_LED, OUTPUT)
+  #define init_LED() do {pinMode(BUILTIN_LED, OUTPUT); set_LED(HIGH);} while(0);
 #else
   #define dbg_printf(...) SERIAL.printf(__VA_ARGS__)
   #define dbg_initserial(rate) SERIAL.begin(rate)
@@ -55,7 +55,7 @@ void set_LED(uint8_t mode) {
   #endif
 }
 
-bool blink_mode = true;
+bool blink_mode = false;
 uint64_t last_blink = 0L;
 #define BLINK_TIME 750L
 
@@ -80,6 +80,34 @@ void check_blink() {
                 led_on = false;
             }
         }
+    } else {
+        if (led_on) {
+            set_LED(HIGH);
+            led_on = false;
+        }
+    }
+}
+
+//only handles one one command (LED:)
+void remoteSignal(const char* cmd, size_t len) {
+    const char* command = "LED:";
+    
+    if (len < sizeof(command)-1) return;    
+
+    for (const char* c = cmd, *d = command; *d; c++, d++) {
+        if (*c != *d) return;
+    }
+
+    char lastchar = cmd[sizeof(command)];
+
+    if (lastchar == '1') {
+        dbg_printf("[COM] Blink on!\n");
+        blink_on();
+    } else if (lastchar == '0') {
+        dbg_printf("[COM] Blink off!\n");
+        blink_off();
+    } else {
+        dbg_printf("[COM] server u so high\n");
     }
 }
 
@@ -87,6 +115,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     switch(type) {
         case WStype_DISCONNECTED:
             dbg_printf("[WSc] Disconnected!\n");
+            blink_off();
             break;
             
         case WStype_CONNECTED:
@@ -95,6 +124,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
             
         case WStype_TEXT:
             dbg_printf("[WSc] got text: \"%s\"\n", payload);
+            remoteSignal((char*) payload, length);
             break;
             
         case WStype_BIN:
