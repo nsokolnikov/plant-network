@@ -1,17 +1,19 @@
 <template name="plantList">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <div class="row">
+    <div class="row" >
         {{#each plants}}
             {{> plantCard}}
         {{/each}}
     </div>
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+    <a class="btn tooltipped" data-position="right" data-delay="50" data-tooltip="I am tooltip">Hover me!</a>
+
 </template>
 
 <template name="plantCard">
     {{debug this}}
     <div class="activator col s3 m12 l6 activator card small hoverable">
-        <div id="grid-images" class="card-image waves-effect waves-block waves-light">
+        <div id="grid-images" class="activator card-image waves-effect waves-block waves-light">
             {{> plantMeasurementChart}}
         </div>
         <div class="activator card-reveal">

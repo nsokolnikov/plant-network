@@ -1,6 +1,9 @@
 
 Template.plantCard.onCreated(function() {
     this.subscribe('imageFromPlant', this.data.image_id);
+    $(document).ready(function(){
+        $('.tooltipped').tooltip({delay: 50});
+    });
     console.log(this);
 });
 
