@@ -62,7 +62,7 @@ function startRefreshing() {
 }
 
 Template.plantMeasurementChart.onCreated(function() {
-    this.subscribe('recentMeasurementByPlant', 10451577);
+    this.subscribe('recentMeasurementByPlant', this.data.id);
     console.log(this);
 
 })
