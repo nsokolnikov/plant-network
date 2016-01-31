@@ -7,14 +7,16 @@ function MyWebSocketHandler(url, ws) {
         var json = JSON.parse(msg.data);
         console.log(json);
         console.log(Date.now());
-        Meteor.call('addNewMeasurement', Date.now(), json.hwid, json.type, json.data);
-        console.log(Meteor.call('getAllMeasurements'));
-        if (json.type == "soil_moisture") {
-            if (json.data === -1) {
-                ws.send("That's a bailout!");
+        if (json.data !== -1) {
+            Meteor.call('addNewMeasurement', Date.now(), json.hwid, json.type, json.data);
+            console.log(Meteor.call('getAllMeasurements'));
+            if (json.type == "soil_moisture") {
+                if (json.data === -1) {
+                    ws.send("That's a bailout!");
+                }
             }
         }
-
+        
         if (Math.random() < .1) {
             if (Math.random() < .5) {
                 ws.send("LED:1");
