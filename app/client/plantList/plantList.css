@@ -6,4 +6,11 @@
 
 #grid-image {
     max-height: 100%;
+    z-index: 0;
+}
+
+#toast-container {
+    min-width: 8%;
+    top: 25%;
+    right: 25%;
 }
