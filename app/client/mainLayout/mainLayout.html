@@ -1,6 +1,11 @@
 <template name="mainLayout">
-    {{debug this.content}}
+    <header>
+        {{> Template.dynamix template=tabContent}}
+    </header>
     <main>
-        {{> Template.dynamic template=content}}
+        {{> Template.dynamic template=mainContent}}
     </main>
+    <footer>
+        {{> Template.dynamic template=footerContent}}
+    </footer>
 </template>

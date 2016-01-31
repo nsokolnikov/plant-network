@@ -15,9 +15,9 @@ var exposed = FlowRouter.group();
 
 exposed.route('/', {
     trigger: [redirectIfLoggedIn],
-    name: 'landing',
+    name: 'landingPage',
     action: function (params, queryParams) {
-        BlazeLayout.render('mainLayout', {content: 'plantList'})
+        BlazeLayout.render('landingPage', {mainContent: 'index'});
     }
 });
 
@@ -57,7 +57,7 @@ privateRoutes.route('/:user_id/add', {
     }
 });
 
-if(Meteor.isClient) {
+if (Meteor.isClient) {
     Accounts.onLogin(function (user) {
         var path = FlowRouter.current().path;
         // we only do it if the user is in the login page
