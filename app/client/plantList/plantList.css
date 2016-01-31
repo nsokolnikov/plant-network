@@ -4,10 +4,13 @@
     right:5%;
 }
 
-#grid-image {
+#grid-images {
     max-height: 100%;
+    z-index: 0;
 }
 
-#whatever{
-    visibility:hidden;
+#toast-container {
+    min-width: 8%;
+    top: 25%;
+    right: 25%;
 }

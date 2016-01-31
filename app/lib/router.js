@@ -44,7 +44,7 @@ var privateRoutes = FlowRouter.group({
 
 privateRoutes.route('/:user_id/plants', {
     action: function (params, queryParams) {
-        BlazeLayout.render('mainLayout', {mainContent: 'plantList'}, function (err, succ) {
+        BlazeLayout.render('mainLayout', {mainContent: 'plantList', headerContent: 'tabLayout'}, function (err, succ) {
             if (err) {
                 console.log(err);
             }
@@ -54,13 +54,7 @@ privateRoutes.route('/:user_id/plants', {
 
 privateRoutes.route('/:user_id/nearby', {
     action: function (params, queryParams) {
-        BlazeLayout.render('plantMeasurementChart', {mainContent: 'plantMeasurementChart'});
-    }
-});
-
-privateRoutes.route('/:user_id/add', {
-    action: function (params, queryParams) {
-        BlazeLayout.render('newPlantTemplate', {mainContent: 'newPlantTemplate'});
+        BlazeLayout.render('mainLayout', {mainContent: 'plantList', headerContent: 'tabLayout'});
     }
 });
 

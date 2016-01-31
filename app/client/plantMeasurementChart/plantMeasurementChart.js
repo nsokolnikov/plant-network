@@ -28,7 +28,9 @@ function insertPoints(points) {
         if (point.data === undefined || point.time === undefined) {
             continue;
         }
-        x.push(point.time);
+        var date = new Date(point.time);
+        console.log(date);
+        x.push(date);
         data.push(point.data);
 
     }
@@ -63,7 +65,15 @@ Template.plantMeasurementChart.onRendered(function () {
             xs: {
                 'data1': 'x'
             },
-            columns: [['x'],['data1']]
+            columns: [['x'],['data1']],
+            x: 'x',
+        },axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%H:%M:%S'
+                }
+            }
         }
     });
 

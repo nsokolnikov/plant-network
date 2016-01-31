@@ -18,8 +18,8 @@ function playAnimation(){
     $buttonWrapper.addClass("clicked").delay(1500).queue(function(){
         $layer.addClass("active");
     });
-    setTimeout(function() { showCheckmark(); }, 3000);
-    setTimeout(function() { close(); }, 5000);
+    setTimeout(function() { showCheckmark(); }, 1500);
+    setTimeout(function() { close(); }, 3000);
 }
 
 function close() {
