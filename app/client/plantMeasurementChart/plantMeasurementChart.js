@@ -29,7 +29,6 @@ function insertPoints(points) {
             continue;
         }
         var date = new Date(point.time);
-        console.log(date);
         x.push(date);
         data.push(point.data);
 

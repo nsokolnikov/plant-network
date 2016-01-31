@@ -1,14 +1,29 @@
 Template.plantCard.onCreated(function() {
-    this.subscribe('imageFromPlant', this.data.image_id);
-    $(document).ready(function(){
-        $('.tooltipped').tooltip({delay: 50});
-    });
+    var template = this;
     console.log(this);
+    template.subscribe('recentEventsByPlant', parseInt(this.data._id));
+    template.subscribe('imageFromPlant', this.data.image_id);
+    template.subscribe('plantsAndUsers');
 });
 
 Template.plantCard.helpers({
     imageURL: function(plant) {
         console.log(this);
+        return Images.findOne(this.image_id);
+    },
+    statusMessage: function() {
+        var events = Events.find().fetch();
+        for(var i = 0; i < events.length; i++) {
+            if(events[i].eventType === 'great') {
+                return "UGH... finally you feed me...";
+            }
+        }
+        return Plant.findOne({_id: this._id}).status;
+    }
+});
+
+Template.plantCard.events({
+    'click ': function(plant) {
         return Images.findOne(this.image_id);
     }
 });
@@ -17,7 +32,11 @@ Template.plantCard.helpers({
 
 Template.plantList.helpers({
     plants: function() {
-        return Plant.find({user_id: Meteor.userId()});
+        if (FlowRouter.current().path == '/' + Meteor.userId() + '/nearby') {
+            return Plant.find();
+        } else {
+            return Plant.find({user_id: Meteor.userId()});
+        }
     },
     owner: function() {
         return Users.findOne(this.user_id);

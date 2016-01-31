@@ -3,6 +3,10 @@ Meteor.publish('recentMeasurementByPlant', function (plant_id) {
     return Measurements.find({plant_id: plant_id}, {sort: {time: -1}, limit: 60});
 });
 
+Meteor.publish('recentEventsByPlant', function (plant_id) {
+    return Events.find({plant_id: plant_id}, {sort: {time: -1}, limit: 10})
+});
+
 Meteor.publish('imageFromPlant', function(image_id) {
     console.log(image_id);
    return Images.find(image_id);

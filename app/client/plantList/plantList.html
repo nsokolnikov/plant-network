@@ -1,6 +1,6 @@
 <template name="plantList">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <div class="row" >
+    <div class="row">
         {{#each plants}}
             {{> plantCard}}
         {{/each}}
@@ -10,16 +10,20 @@
 </template>
 
 <template name="plantCard">
-    {{debug this}}
-    <div class="container">
-    <div class="activator col s3 m12 l6 activator card small hoverable">
-        <div id="grid-images" class="activator card-image waves-effect waves-block waves-light">
-            {{> plantMeasurementChart}}
+        <div class="col s4 m12 l6 offset card medium">
+            <div id="grid-images" class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="{{imageURL.url}}">
+
+            </div>
+            <div class="card-title">
+                <span class="activator card-title grey-text text-darken-4">{{name}}</span>
+                <p>{{statusMessage.status}}"</p>
+            </div>
+            <div class="card-reveal">
+                <span class="card-title grey-text text-darken-4" id="owner">
+                    {{> plantMeasurementChart}}
+                    <i class="small material-icons">swap_vertical_circle</i>
+                </span>
+            </div>
         </div>
-        <div class="activator card-reveal">
-            <span class="activator card-title grey-text text-darken-4" id="owner">{{name}}</span>
-            <p>"{{status}}"</p>
-        </div>
-    </div>
-    </div>
 </template>
