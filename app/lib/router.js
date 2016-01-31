@@ -58,6 +58,13 @@ FlowRouter.route('/add', {
 
 FlowRouter.route('/', {
     action: function (params, queryParams) {
+        var _id = Meteor.user();
+        console.log("jkjgkghkg");
+        if (_id) {
+            FlowRouter.go('/' + _id + '/plants');
+        }else{
+            FlowRouter.go('/login');
+        }
         BlazeLayout.render('mainLayout', {content: 'plantNetwork'})
     }
 });
