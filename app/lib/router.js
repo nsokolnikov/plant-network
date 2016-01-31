@@ -5,17 +5,22 @@ function checkLoggedIn(ctx, redirect) {
 }
 
 function redirectIfLoggedIn(ctx, redirect) {
+    console.log(ctx);
     var _id = Meteor.userId();
     if (_id) {
         redirect('/' + _id + '/plants');
     }
 }
 
-var exposed = FlowRouter.group();
+var publicRoutes = FlowRouter.group({
+    name: 'public',
+    triggersEnter: [
+        redirectIfLoggedIn
+    ]
+});
 
 
-exposed.route('/', {
-    trigger: [redirectIfLoggedIn],
+publicRoutes.route('/', {
     name: 'landingPage',
     action: function (params, queryParams) {
         BlazeLayout.render('landingPage', {mainContent: 'index'});
@@ -23,7 +28,7 @@ exposed.route('/', {
 });
 
 
-exposed.route('/login', {
+publicRoutes.route('/login', {
     name: "login",
     action: function (params, queryParams) {
         BlazeLayout.render('mainLayout', {mainContent: 'atForm'})
