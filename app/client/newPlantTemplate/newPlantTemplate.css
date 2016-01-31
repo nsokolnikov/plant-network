@@ -316,6 +316,10 @@ button {
     transition: .5s all ease 1s;
 }
 
+.layered-content {
+    pointer-events: none;
+}
+
 /* animations */
 
 @-webkit-keyframes checkmark {
