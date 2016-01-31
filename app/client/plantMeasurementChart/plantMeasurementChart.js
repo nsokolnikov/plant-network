@@ -14,29 +14,23 @@ function updateData(){
 }
 
 function insertNewPoint() {
-    //Meteor.call('getLastNMeasurements', 0, 1, function (err, value) {
     var points = Measurements.find().fetch();
     x=[];
     data=[];
     updateData();
-    //if (points[points.length-1] != undefined) {
-    //    var lastPoint = points[points.length-1];
-    //    x.push(lastPoint.time);
-    //    data.push(lastPoint.data);
-    //    if (data.length > 15) {
-    //        x.splice(1,1);
-    //        data.splice(1,1);
-    //    }
-    //    updateData();
-    //}
 }
 
 function insertPoints(points) {
     x.push('x');
     data.push('data1');
-    for (var point in points) {
-        x.push(points[point].time);
-        data.push(points[point].data);
+    for (var index in points) {
+        var point = points[index];
+        if (point.data === undefined || point.time === undefined) {
+            continue;
+        }
+        x.push(point.time);
+        data.push(point.data);
+
     }
     updateData();
 }
