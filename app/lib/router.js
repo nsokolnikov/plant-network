@@ -15,9 +15,9 @@ var exposed = FlowRouter.group();
 
 exposed.route('/', {
     trigger: [redirectIfLoggedIn],
-    name: 'landing',
+    name: 'landingPage',
     action: function (params, queryParams) {
-        BlazeLayout.render('mainLayout', {mainContent: 'index'});
+        BlazeLayout.render('landingPage', {mainContent: 'index'});
     }
 });
 

@@ -1,0 +1,13 @@
+.btn-lg{
+    box-sizing: content-box;
+}
+
+#container1{
+    background: url("https://static-secure.guim.co.uk/sys-images/Guardian/About/General/2015/2/17/1424176426858/Homes-houseplants-009.jpg");
+    height:100vh;
+}
+#container2{
+    background:#ffffff;
+    width: 80%;
+    margin:auto;
+}
