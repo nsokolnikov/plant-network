@@ -2,6 +2,7 @@ Template.registerHelper("debug", function (debugStuff) {
     return console.log(debugStuff);
 });
 
+/*
 Template.mainLayout.events({
     "click #loginbutton" : function (event, template){
         event.stopPropagation();
@@ -9,4 +10,4 @@ Template.mainLayout.events({
         FlowRouter.go('/login');
     }
 
-});
+});*/

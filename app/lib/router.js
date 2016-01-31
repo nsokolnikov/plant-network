@@ -13,6 +13,7 @@ function redirectIfLoggedIn(ctx, redirect) {
 
 var exposed = FlowRouter.group();
 
+
 exposed.route('/', {
     trigger: [redirectIfLoggedIn],
     name: 'landingPage',
@@ -21,10 +22,11 @@ exposed.route('/', {
     }
 });
 
+
 exposed.route('/login', {
     name: "login",
     action: function (params, queryParams) {
-        BlazeLayout.render('mainLayout', {content: 'atForm'})
+        BlazeLayout.render('mainLayout', {mainContent: 'atForm'})
     }
 });
 
@@ -37,7 +39,7 @@ var privateRoutes = FlowRouter.group({
 
 privateRoutes.route('/:user_id/plants', {
     action: function (params, queryParams) {
-        BlazeLayout.render('mainLayout', {content: 'plantList'}, function (err, succ) {
+        BlazeLayout.render('mainLayout', {mainContent: 'plantList'}, function (err, succ) {
             if (err) {
                 console.log(err);
             }
@@ -47,13 +49,13 @@ privateRoutes.route('/:user_id/plants', {
 
 privateRoutes.route('/:user_id/nearby', {
     action: function (params, queryParams) {
-        BlazeLayout.render('plantMapTemplate', {content: 'plantMapTemplate'});
+        BlazeLayout.render('plantMapTemplate', {mainContent: 'plantMapTemplate'});
     }
 });
 
 privateRoutes.route('/:user_id/add', {
     action: function (params, queryParams) {
-        BlazeLayout.render('newPlantTemplate', {content: 'newPlantTemplate'});
+        BlazeLayout.render('newPlantTemplate', {mainContent: 'newPlantTemplate'});
     }
 });
 
