@@ -1,10 +1,21 @@
+Images = new FS.Collection("images", {
+    stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
+});
+
 Template.newPlantTemplate.events({
     'click .hiddenFileInputContainter img':function(event) {
         var input = $('#flupld');
-        input.click(event);
+        //input.change(event);
+        input.trigger('click');
     },
-    'change #flupld':function(){
-      console.log('Text');
+    'change #flupld':function(event,template){
+        var files = event.target.files;
+        for (var i = 0, ln = files.length; i < ln; i++) {
+            console.log(files[i]);
+            Images.insert(files[i], function (err, fileObj) {
+                // Inserted new doc wi th ID fileObj._id, and kicked off the data upload using HTTP
+            });
+        }
     },
     'click .main-button':function(event) {
         console.log('clicked');

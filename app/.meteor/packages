@@ -31,3 +31,6 @@ jakozaur:websockify
 dburles:google-maps
 mdg:geolocation
 joncursi:socket-io-client
+cfs:standard-packages
+cfs:gridfs
+cfs:filesystem
