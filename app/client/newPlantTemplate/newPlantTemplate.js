@@ -59,7 +59,7 @@ function createNewPlant() {
 
     Plant.insert({
         level: 0,
-        id: serial,
+        _id: serial,
         user_id: Meteor.userId(),
         name: nickname,
         location: office,

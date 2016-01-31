@@ -18,28 +18,17 @@ function insertNewPoint() {
     var points = Measurements.find().fetch();
     x=[];
     data=[];
-    insertPoints(points);
-    //for (var index in point) {
-    //    if (points[index] != undefined) {
-    //        var points = points[index];
-    //        //if (point.time == x[x.length-1]) {
-    //        //            return;
-    //        //        }
-    //        x.push(point.time);
-    //        data.push(point.data);
-    //        if (data.length > 15) {
-    //            x.splice(1,1);
-    //            data.splice(1,1);
-    //        }
-    //        updateData();
+    updateData();
+    //if (points[points.length-1] != undefined) {
+    //    var lastPoint = points[points.length-1];
+    //    x.push(lastPoint.time);
+    //    data.push(lastPoint.data);
+    //    if (data.length > 15) {
+    //        x.splice(1,1);
+    //        data.splice(1,1);
     //    }
+    //    updateData();
     //}
-        //if (value != undefined) {
-        //    var point = value[0];
-        //
-        //
-        //}
-    //});
 }
 
 function insertPoints(points) {
