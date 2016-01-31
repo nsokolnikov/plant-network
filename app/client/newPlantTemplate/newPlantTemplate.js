@@ -1,7 +1,6 @@
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();
-
         reader.onload = function (e) {
             $('.fileDownload')
                 .attr('src', e.target.result);
@@ -14,7 +13,7 @@ function readURL(input) {
 function playAnimation(){
         var $buttonWrapper = $(".button-wrapper"),
         $ripple = $(".ripple"),
-        $layer = $(".layered-content")
+        $layer = $(".layered-content");
     $ripple.addClass("rippling");
     $buttonWrapper.addClass("clicked").delay(1500).queue(function(){
         $layer.addClass("active");
@@ -57,6 +56,7 @@ function createNewPlant() {
     var nickname = $('#nickname').val();
     var serial = $('#serial').val();
     var office = $('#office').val();
+    var image_id = Session.get('image_id');
 
     Plant.insert({
         level: 0,
@@ -64,8 +64,25 @@ function createNewPlant() {
         user_id: Meteor.userId(),
         name: nickname,
         location: office,
+        image_id:image_id
     })
 }
+
+function saveImageToDb(event) {
+    var files = event.target.files;
+    //for (var i = 0, ln = files.length; i < ln; i++) {
+    Images.insert(files[0], function (err, fileObj) {
+        var id = fileObj._id;
+        Session.set('image_id',id);
+    });
+    //}
+}
+
+Template.newPlantTemplate.helpers({
+    images: function() {
+        return Images.find();
+    }
+});
 
 Template.newPlantTemplate.events({
     'click .hiddenFileInputContainter img':function(event) {
@@ -75,12 +92,7 @@ Template.newPlantTemplate.events({
 
     'change #flupld':function(event,template){
         readURL(event.target);
-        FS.Utility.eachFile(event, function(file) {
-            Images.insert({
-                image:file,
-                id:1
-            });
-        });
+        saveImageToDb(event);
     },
     'click .main-button': function(event) {
         console.log('clicked');
@@ -118,9 +130,6 @@ Template.newPlantTemplate.events({
 Template.newPlantTemplate.rendered = function(){
     'use strict';
     var $mainButton = $(".main-button");
-
-
-
     $mainButton.on("click", function(){
         if (isEmpty()) {
             AntiModals.alert('Not all fields are filled!');
