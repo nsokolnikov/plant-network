@@ -1,5 +1,6 @@
 Template.landingPage.events({
-    "click #loginbutton": function (event, template) {
+    "click #loginbutton, click #loginLink": function (event, template) {
+        console.log("ttt");
         FlowRouter.go('/login');
     }
 })

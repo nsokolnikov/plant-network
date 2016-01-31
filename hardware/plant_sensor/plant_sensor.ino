@@ -1,58 +1,110 @@
-/*
- * WebSocketClient.ino
- *
- *  Created on: 24.05.2015
- *
- */
-
 #include <Arduino.h>
 
 #include <Esp.h>
-//#include <ESP8266WiFi.h>
 #include <ESP8266WiFiMulti.h>
 
 #include <WebSocketsClient.h>
 
-//#include <Hash.h>
-
 ESP8266WiFiMulti WiFiMulti;
 WebSocketsClient webSocket;
-
-//bool active = true;
 
 #define SERIAL Serial
 
 #define GP0 0
 #define GP2 2
 #define GREEN_BUTTON 0
+
 #define CAPACITOR 2
+#define CAPACITOR_RATE 1000 //1 ms
+
+uint64_t last_capacitor = 0L;
+
+#define CAPACITOR_BAILOUT 1000*10 //10 ms
+
+#define NETWORK_NAME "WinterfellOTG"
+//Fite me irl
+#define NETWORK_PASS "THEothers"
 
 uint32_t hwid;
+
+//#define ENABLE_LED
+//#define BUILTIN_LED dont use this its already defined
+
+#ifdef ENABLE_LED
+  #define dbg_printf(...) while(0) {}
+  #define dbg_initserial(rate) while(0) {}
+  #define init_LED() pinMode(BUILTIN_LED, OUTPUT)
+#else
+  #define dbg_printf(...) SERIAL.printf(__VA_ARGS__)
+  #define dbg_initserial(rate) SERIAL.begin(rate)
+  #define init_LED() while(0) {}
+#endif
+
+//Note: LOW is on, HIGH is off
+void set_LED(uint8_t mode) {
+  #ifdef ENABLE_LED
+    digitalWrite(BUILTIN_LED, mode);
+  #else
+    if (mode == LOW) {
+        dbg_printf("[LED] LED on!\n");
+    } else if (mode == HIGH) {
+        dbg_printf("[LED] LED off!\n");
+    } else {
+        dbg_printf("[LED] Writing %X to the LED!", mode);
+    }
+  #endif
+}
+
+bool blink_mode = true;
+uint64_t last_blink = 0L;
+#define BLINK_TIME 750L
+
+bool led_on = false;
+void blink_on() {
+    blink_mode = true;
+}
+void blink_off() {
+    blink_mode = false;
+    set_LED(HIGH);
+}
+void check_blink() {
+    if (blink_mode) {
+        uint64_t now = millis();
+        if (now > last_blink+BLINK_TIME) {
+            last_blink = now;
+            if (!led_on) {
+                set_LED(LOW);
+                led_on = true;
+            } else {
+                set_LED(HIGH);
+                led_on = false;
+            }
+        }
+    }
+}
 
 void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     switch(type) {
         case WStype_DISCONNECTED:
-            SERIAL.printf("[WSc] Disconnected!\n");
+            dbg_printf("[WSc] Disconnected!\n");
             break;
             
         case WStype_CONNECTED:
-            {
-                SERIAL.printf("[WSc] Connected to url: %s\n",  payload);
-				        //webSocket.sendTXT("[WSc] First connection!");
-            }
+            dbg_printf("[WSc] Connected to url: %s\n",  payload);
             break;
             
         case WStype_TEXT:
-            SERIAL.printf("[WSc] get text: %s\n", payload);
+            dbg_printf("[WSc] got text: \"%s\"\n", payload);
             break;
             
         case WStype_BIN:
-            SERIAL.printf("[WSc] get binary length: %u\n", length);
+            dbg_printf("[WSc] get binary length: %u\n\n", length);
             hexdump(payload, length);
+            dbg_printf("\n\n");
             break;
             
         default:
-            SERIAL.printf("[Wsc] Unknown event %i!", type);
+            dbg_printf("[Wsc] Unknown event %i!", type);
     }
 }
 
@@ -96,40 +148,39 @@ void sleep_micros(unsigned long mms) {
 int ratio = 0;
 
 void setup() {
-    SERIAL.begin(115200);
+    //74880 is chip default
+    dbg_initserial(74880);
+    init_LED();
+    pinMode(CAPACITOR, OUTPUT);
+    
     //pinMode(GREEN_BUTTON, INPUT_PULLUP); 
     
-    SERIAL.printf("\n%s. PLANT-BOT HAS BOOTED UP AND GAINED SENTIENCE.\n", beep());
+    dbg_printf("\n%s. PLANT-BOT HAS BOOTED UP AND GAINED SENTIENCE.\n", beep());
 
     hwid = ESP.getChipId();
 
     //SERIAL.print(ESP.getChipId());
 
-    WiFiMulti.addAP("themothership", "colinpeter");
-    SERIAL.printf("ESTABLISHING CONNECTION TO MOTHERSHIP...\n");
+    WiFiMulti.addAP(NETWORK_NAME, NETWORK_PASS);
+    dbg_printf("ESTABLISHING CONNECTION TO MOTHERSHIP...\n");
 
     while(WiFiMulti.run() != WL_CONNECTED) {
         delay(100);
         if (++ratio > 100) {
             ratio = 0;
-            SERIAL.printf("%s. STILL CONNECTING...\n", beep());
+            dbg_printf("%s. STILL CONNECTING...\n", beep());
         }
     }
 
-    SERIAL.printf("CONNECTION ESTABLISHED. BEGINNING GROUND INVASION.\n");
+    dbg_printf("CONNECTION ESTABLISHED. BEGINNING GROUND INVASION.\n");
 
     webSocket.begin("192.168.43.132", 3000, "/sensorData");
     webSocket.onEvent(webSocketEvent);
 }
 
-void loop() {
-    webSocket.loop();
-  
-    //SERIAL.printf("\nDelaying for 1 s...\n");
-    pinMode(CAPACITOR, OUTPUT);
+long poll_capacitor() {
     digitalWrite(CAPACITOR, HIGH);
     delayMicroseconds(1000*1000);
-
 
     uint64_t startm;
     uint64_t endm;
@@ -137,68 +188,50 @@ void loop() {
     
     pinMode(CAPACITOR, INPUT);
     startm = micros();
-    bailout = startm + 1000*1000; //1 second
+    bailout = startm + CAPACITOR_BAILOUT;
 
     while (digitalRead(CAPACITOR) && micros() < bailout) {wdt_reset();}
     endm = micros();
 
-    String message = "";
     if (endm < bailout) {
         long diff = endm - startm;
-
-        message = make_soil_json(diff);
-        
-        /*long wet = 150L;
-        long dry = 3200L;
-        double wetness = 100.0 * (1.0 - double(diff - wet)/double(dry - wet));
-        
-        //Took diff micros!
-        message += "Discharged in ";
-        message += diff;
-        message += " microseconds!";
-
-        if (diff < 10) {
-            message += "\nYour metal is probably touching!";
-        } else if (wetness > 0.0 && wetness < 100.0) {
-            message += "\nProbably about ";
-            message += wetness;
-            message += "% wet!";
-        } else if (wetness <= 0.0) {
-            message += "\nProbably very dry!";
-        } else {
-            message += "\nProbably very wet!";
-        }*/
-        webSocket.sendTXT(message);
+        webSocket.sendTXT(make_soil_json(diff));
+        return diff;
     } else {
         webSocket.sendTXT(make_soil_json(-1));
+        return -1;
     }
-    
-    
-    //SERIAL.printf("Timing until low...\n");
-    /*unsigned long endm;
-    unsigned long startm = micros()
-
-    while (digitalRead(GREEN_BUTTON)) {wdt_reset();}
-    unsigned long endm = micros();
-    unsigned long duration = endm-start;
-    //SERIAL.printf("Took %i micros to discharge!\n", duration);
-  
-    /*if (active) {
-        if (++ratio > 200) {
-            ratio = 0;
-            String foo = "RESISTANCE IS FUTILE. ";
-            foo += beep();
-            foo = "Sending \"" + foo + "\"\n";
-            SERIAL.print(foo);
-            webSocket.sendTXT(foo);
-        }
-      
-        webSocket.loop();
-        int green_state = digitalRead(GREEN_BUTTON);
-        if (!green_state) {
-            SERIAL.printf("INVASION TERMINATED. BEAMING UP.\n");
-            webSocket.disconnect();
-            active = false;
-        } 
-    }*/
 }
+
+void loop() {
+    webSocket.loop();
+
+    check_blink();
+
+    long now = millis();
+    if (now > last_capacitor + CAPACITOR_RATE) {
+        last_capacitor = now;
+        poll_capacitor();
+    }
+}
+
+/*long wet = 150L;
+  long dry = 3200L;
+  double wetness = 100.0 * (1.0 - double(diff - wet)/double(dry - wet));
+  
+  //Took diff micros!
+  message += "Discharged in ";
+  message += diff;
+  message += " microseconds!";
+
+  if (diff < 10) {
+      message += "\nYour metal is probably touching!";
+  } else if (wetness > 0.0 && wetness < 100.0) {
+      message += "\nProbably about ";
+      message += wetness;
+      message += "% wet!";
+  } else if (wetness <= 0.0) {
+      message += "\nProbably very dry!";
+  } else {
+      message += "\nProbably very wet!";
+  }*/
