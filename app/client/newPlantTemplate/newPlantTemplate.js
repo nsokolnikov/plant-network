@@ -1,23 +1,88 @@
-Images = new FS.Collection("images", {
-    stores: [new FS.Store.FileSystem("images", {path: "~/uploads"})]
-});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function (e) {
+            $('.fileDownload')
+                .attr('src', e.target.result);
+        };
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function playAnimation(){
+        var $buttonWrapper = $(".button-wrapper"),
+        $ripple = $(".ripple"),
+        $layer = $(".layered-content")
+    $ripple.addClass("rippling");
+    $buttonWrapper.addClass("clicked").delay(1500).queue(function(){
+        $layer.addClass("active");
+    });
+    setTimeout(function() { showCheckmark(); }, 3000);
+    setTimeout(function() { close(); }, 5000);
+}
+
+function close() {
+    AntiModals.dismissAll();
+    var $buttonWrapper = $(".button-wrapper"),
+        $ripple = $(".ripple"),
+        $layer = $(".layered-content")
+
+    $buttonWrapper.removeClass("clicked");
+    $ripple.removeClass("rippling");
+    $layer.removeClass("active");
+    createNewPlant();
+}
+
+function showCheckmark() {
+    var icon = $('.icon');
+    icon.addClass('icon--order-success svg');
+    icon.css('display','inline');
+}
+
+function isEmpty() {
+    var nickname = $('#nickname').val();
+    var serial = $('#serial').val();
+    var office = $('#office').val();
+
+    if (nickname && serial && office) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function createNewPlant() {
+    var nickname = $('#nickname').val();
+    var serial = $('#serial').val();
+    var office = $('#office').val();
+
+    Plant.insert({
+        level: 0,
+        id: serial,
+        user_id: Meteor.userId(),
+        name: nickname,
+        location: office,
+    })
+}
 
 Template.newPlantTemplate.events({
     'click .hiddenFileInputContainter img':function(event) {
         var input = $('#flupld');
-        //input.change(event);
         input.trigger('click');
     },
+
     'change #flupld':function(event,template){
-        var files = event.target.files;
-        for (var i = 0, ln = files.length; i < ln; i++) {
-            console.log(files[i]);
-            Images.insert(files[i], function (err, fileObj) {
-                // Inserted new doc wi th ID fileObj._id, and kicked off the data upload using HTTP
+        readURL(event.target);
+        FS.Utility.eachFile(event, function(file) {
+            Images.insert({
+                image:file,
+                id:1
             });
-        }
+        });
     },
-    'click .main-button':function(event) {
+    'click .main-button': function(event) {
         console.log('clicked');
     },
     'click .hidden':function(event) {
@@ -48,46 +113,20 @@ Template.newPlantTemplate.events({
             console.log("Geolocation is not supported by this browser.");
         }
     },
-    createNewPlant: function() {
-        var nickname = $('#nickname').val();
-        var serial = $('#serial').val();
-        var location = $('#location').val();
-    }
 });
 
 Template.newPlantTemplate.rendered = function(){
     'use strict';
+    var $mainButton = $(".main-button");
 
-    $('.datepicker').pickadate({
-        selectMonths: true, // Creates a dropdown to control month
-        selectYears: 15 // Creates a dropdown of 15 years to control year
-    });
-    var $mainButton = $(".main-button"),
-        $closeButton = $(".close-button"),
-        $buttonWrapper = $(".button-wrapper"),
-        $ripple = $(".ripple"),
-        $layer = $(".layered-content"),
-        $checkmark = $('.icon');
 
-    function close() {
-        $buttonWrapper.removeClass("clicked");
-        $ripple.removeClass("rippling");
-        $layer.removeClass("active");
-    }
-
-    function showCheckmark() {
-        var icon = $('.icon');
-        //icon.removeClass('icon--order-success svg');
-        icon.addClass('icon--order-success svg');
-        icon.css('display','inline');
-    }
 
     $mainButton.on("click", function(){
-        $ripple.addClass("rippling");
-        $buttonWrapper.addClass("clicked").delay(1500).queue(function(){
-            $layer.addClass("active");
-        });
-        setTimeout(function() { showCheckmark(); }, 3000);
-        setTimeout(function() { close(); }, 5000);
+        if (isEmpty()) {
+            AntiModals.alert('Not all fields are filled!');
+        } else {
+            createNewPlant();
+            playAnimation();
+        }
     });
 }

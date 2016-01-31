@@ -1,4 +1,5 @@
 <template name="newPlantTemplate">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <main id="container">
         <h2>Adding new plant</h2>
 
@@ -14,26 +15,21 @@
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="nickname" type="text" class="validate">
-                            <label for="nickname">Nickname</label>
+                            <!--<label for="nickname">Nickname</label>-->
+                            <label for="nickname" data-error="" data-success="Okay">Nickname</label>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
                             <input id="serial" type="text" class="validate">
-                            <label for="serial">Serial</label>
+                            <label for="serial" data-error="" data-success="Okay">Serial</label>
                         </div>
                     </div>
-                    <!--<div class="row">-->
-                        <!--<input type="date" class="datepicker">-->
-                        <!--<label for="date">Birthday</label>-->
-                    <!--</div>-->
                     <div class="row">
-                        <div class="col s6">
-                            <a class="waves-effect waves-light btn-large">Add location</a>
-                        </div>
-                        <div class="input-field col s6">
-                            <input id="location"  type="text" class="validate">
-                            <label id="locationLabel" for="location">Location</label>
+                        <div class="input-field col s12">
+                            <input id="office" type="text" class="validate">
+                            <label for="office" data-error="" data-success="Okay">Office</label>
                         </div>
                     </div>
                 </form>
@@ -49,7 +45,7 @@
         <div class="layered-content">
             <div class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="72px" height="72px">
-                    <g fill="none" stroke="#FF0000" stroke-width="3">
+                    <g fill="none" stroke="#00FF00" stroke-width="3">
                         <circle cx="36" cy="36" r="35" style="stroke-dasharray:240px, 240px; stroke-dashoffset: 480px;"></circle>
                         <path d="M17.417,37.778l9.93,9.909l25.444-25.393" style="stroke-dasharray:50px, 50px; stroke-dashoffset: 0px;"></path>
                     </g>
