@@ -5,7 +5,7 @@ function checkLoggedIn(ctx, redirect) {
 }
 
 function redirectIfLoggedIn(ctx, redirect) {
-    var _id = Meteor.user();
+    var _id = Meteor.userId();
     if (_id) {
         redirect('/' + _id + '/plants');
     }
@@ -13,12 +13,13 @@ function redirectIfLoggedIn(ctx, redirect) {
 
 var exposed = FlowRouter.group();
 
-exposed.route('/',{
-    name: "landing",
-    action: function(params, queryParams){
-
+exposed.route('/', {
+    trigger: [redirectIfLoggedIn],
+    name: 'landing',git
+    action: function (params, queryParams) {
+        BlazeLayout.render('mainLayout', {content: 'plantList'})
     }
-})
+});
 
 exposed.route('/login', {
     name: "login",
@@ -50,24 +51,12 @@ privateRoutes.route('/:user_id/nearby', {
     }
 });
 
-FlowRouter.route('/add', {
+privateRoutes.route('/:user_id/add', {
     action: function (params, queryParams) {
         BlazeLayout.render('newPlantTemplate', {content: 'newPlantTemplate'});
     }
 });
 
-FlowRouter.route('/', {
-    action: function (params, queryParams) {
-        var _id = Meteor.user();
-        console.log("jkjgkghkg");
-        if (_id) {
-            FlowRouter.go('/' + _id + '/plants');
-        }else{
-            FlowRouter.go('/login');
-        }
-        BlazeLayout.render('mainLayout', {content: 'plantNetwork'})
-    }
-});
 if(Meteor.isClient) {
     Accounts.onLogin(function (user) {
         var path = FlowRouter.current().path;
