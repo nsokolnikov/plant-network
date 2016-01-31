@@ -14,20 +14,32 @@ function updateData(){
 }
 
 function insertNewPoint() {
-    Meteor.call('getLastNMeasurements', 0, 1, function (err, value) {
-        if (value != undefined) {
-            var point = value[0];
-            console.log(point);
-            x.push(counter++);
-            //x.push(point.time);
-            data.push(point.data);
-            if (data.length > 15) {
-                x.splice(1,1);
-                data.splice(1,1);
-            }
-            updateData();
-        }
-    });
+    //Meteor.call('getLastNMeasurements', 0, 1, function (err, value) {
+    var points = Measurements.find().fetch();
+    x=[];
+    data=[];
+    insertPoints(points);
+    //for (var index in point) {
+    //    if (points[index] != undefined) {
+    //        var points = points[index];
+    //        //if (point.time == x[x.length-1]) {
+    //        //            return;
+    //        //        }
+    //        x.push(point.time);
+    //        data.push(point.data);
+    //        if (data.length > 15) {
+    //            x.splice(1,1);
+    //            data.splice(1,1);
+    //        }
+    //        updateData();
+    //    }
+    //}
+        //if (value != undefined) {
+        //    var point = value[0];
+        //
+        //
+        //}
+    //});
 }
 
 function insertPoints(points) {
@@ -49,12 +61,19 @@ function startRefreshing() {
     setInterval(insertNewPoint, 1000);
 }
 
-Template.plantMeasurementChart.rendered = function () {
-    Meteor.call('getLastNMeasurements',0,5,function(err,value){
-        console.log(value);
-        insertPoints(value);
+Template.plantMeasurementChart.onCreated(function() {
+    this.subscribe('recentMeasurementByPlant', 10451577);
+    console.log(this);
+
+})
+
+
+Template.plantMeasurementChart.onRendered(function () {
+    //Meteor.call('getLastNMeasurements',0,5,function(err,value){
+    var points = Measurements.find().fetch();
+        insertPoints(points);
         startRefreshing();
-    });
+    //});
     var chart = c3.generate({
         bindto: this.find('.chart'),
         data: {
@@ -72,4 +91,4 @@ Template.plantMeasurementChart.rendered = function () {
             []
         ]});
     });
-}
+});

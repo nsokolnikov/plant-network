@@ -1,8 +1,10 @@
-Meteor.publish('recentMeasurementByPlant', function (plant) {
-    return Measurements.collection.find({plant_id: plant._id}, {sort: {date: -1}, limit: 100});
+Meteor.publish('recentMeasurementByPlant', function (plant_id) {
+    console.log(plant_id);
+    return Measurements.find({plant_id: plant_id}, {sort: {time: -1}, limit: 100});
 });
 
 Meteor.publish('imageFromPlant', function(image_id) {
+    console.log(image_id);
    return Images.find(image_id);
 });
 

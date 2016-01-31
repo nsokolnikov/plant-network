@@ -3,9 +3,9 @@ function MyWebSocketHandler(url, ws) {
         console.log("Connection!");
     }));
     ws.on('message', Meteor.bindEnvironment(function (msg) {
-        console.log(JSON.parse(msg.data));
+       // console.log(JSON.parse(msg.data));
         var json = JSON.parse(msg.data);
-        console.log(Date.now());
+       // console.log(Date.now());
         Meteor.call('addNewMeasurement', Date.now(), json.hwid, json.type, json.data);
 //        console.log(Meteor.call('getAllMeasurements'));
         if (json.type == "soil_moisture") {

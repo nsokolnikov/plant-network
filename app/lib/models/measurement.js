@@ -25,7 +25,7 @@ Meteor.methods({
             type: type,
             data: data
         }
-        Measurements.collection.insert(toInsert);
+        Measurements.insert(toInsert);
     },
     'burnThemAll' : function(){
         Measurements.collection.drop()
