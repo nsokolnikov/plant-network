@@ -15,7 +15,7 @@ var exposed = FlowRouter.group();
 
 exposed.route('/', {
     trigger: [redirectIfLoggedIn],
-    name: 'landing',git
+    name: 'landing',
     action: function (params, queryParams) {
         BlazeLayout.render('mainLayout', {content: 'plantList'})
     }

@@ -1,7 +1,20 @@
 <template name="plantList">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <div class="container">
     {{#each plants}}
-        <li class='plant'>{{name}}</li>
+        <div class="card small">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="http://science-all.com/images/plant/plant-06.jpg">
+            </div>
+            <div class="card-content activator">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal activator">
+                <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                <p>Here is some more information about this product that is only revealed once clicked on.</p>
+            </div>
+        </div>
     {{/each}}
+    </div>
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 </template>
