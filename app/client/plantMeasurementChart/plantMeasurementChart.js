@@ -17,6 +17,7 @@ function insertNewPoint() {
     var points = Measurements.find().fetch();
     x=[];
     data=[];
+    insertPoints(points);
     updateData();
 }
 
@@ -45,7 +46,7 @@ function startRefreshing() {
 }
 
 Template.plantMeasurementChart.onCreated(function() {
-    this.subscribe('recentMeasurementByPlant', this.data.id);
+    this.subscribe('recentMeasurementByPlant', 10451577);
     console.log(this);
 
 })
