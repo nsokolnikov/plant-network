@@ -1,5 +1,3 @@
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
-
 html {
     height: 100%;
 }
@@ -318,6 +316,10 @@ button {
     transition: .5s all ease 1s;
 }
 
+.layered-content {
+    pointer-events: none;
+}
+
 /* animations */
 
 @-webkit-keyframes checkmark {
@@ -393,7 +395,7 @@ button {
     display: none
 } */
 .icon {
-    display: inline;
+    display: none;
     position: absolute;
     left: 50%;
     top: 50%;

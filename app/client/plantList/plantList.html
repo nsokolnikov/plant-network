@@ -1,5 +1,8 @@
 <template name="plantList">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     {{#each plants}}
         <li class='plant'>{{name}}</li>
     {{/each}}
+    <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
 </template>
