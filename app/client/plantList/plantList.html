@@ -10,16 +10,15 @@
 </template>
 
 <template name="plantCard">
-    {{debug this}}
-    <div class="container">
-    <div class="activator col s3 m12 l6 activator card small hoverable">
-        <div id="grid-images" class="activator card-image waves-effect waves-block waves-light">
-            {{> plantMeasurementChart}}
+    <div class="container activator">
+        <div class="activator col s3 m12 l6 card small hoverable">
+            <div id="grid-images" class="activator card-image waves-effect waves-block waves-light">
+                {{> plantMeasurementChart}}
+            </div>
+            <div class="activator card-reveal">
+                <span class="activator card-title grey-text text-darken-4" id="owner">{{name}}</span>
+                <p>"{{status}}"</p>
+            </div>
         </div>
-        <div class="activator card-reveal">
-            <span class="activator card-title grey-text text-darken-4" id="owner">{{name}}</span>
-            <p>"{{status}}"</p>
-        </div>
-    </div>
     </div>
 </template>
