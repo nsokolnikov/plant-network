@@ -1,17 +1,22 @@
 <template name="plantList">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div class="row">
-    {{#each plants}}
-        <div class="activator col s4 activator card small hoverable" style="max-height: 60%;">
-            <div class="card-image waves-effect waves-block waves-light" style="max-height: 100%;">
-                <img class="activator" src="http://science-all.com/images/plant/plant-06.jpg">
-                <span class="card-title grey-text text-darken-4">{{name}}</span>
-            </div>
-            <div class="activator card-reveal">
-                <span class="activator card-text grey-text text-darken-4" id="owner">THIS IS HOW IM FEELING{{status}}</span>
-            </div>
-        </div>
-    {{/each}}
+        {{#each plants}}
+            {{> plantCard}}
+        {{/each}}
     </div>
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
+</template>
+
+<template name="plantCard">
+    {{debug this}}
+    <div class="activator col s3 m12 l6 activator card small hoverable">
+        <div id="grid-images" class="card-image waves-effect waves-block waves-light">
+            <img class="activator" src="{{imageURL.url}}">
+        </div>
+        <div class="activator card-reveal">
+            <span class="activator card-title grey-text text-darken-4" id="owner">{{name}}</span>
+            <p>"{{status}}"</p>
+        </div>
+    </div>
 </template>

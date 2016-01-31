@@ -9,9 +9,7 @@ Plant.helpers({
         Meteor.call('incrementLevel', this.user_id);
     },
     picture: function() {
-        return Meteor.call('picture', this.picture_id, function(err, succ) {
-
-        })
+        return Meteor.call('picture', this.image_id);
     }
 });
 

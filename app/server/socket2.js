@@ -1,4 +1,4 @@
-Measurements.collection.remove()
+Measurements.collection.remove();
 function MyWebSocketHandler(url, ws) {
     ws.on('open', Meteor.bindEnvironment(function (msg) {
         console.log("Connection!");

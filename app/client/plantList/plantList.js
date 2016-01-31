@@ -1,3 +1,16 @@
+
+Template.plantCard.onCreated(function() {
+    this.subscribe('imageFromPlant', this.data.image_id);
+    console.log(this);
+});
+
+Template.plantCard.helpers({
+    imageURL: function(plant) {
+        console.log(this);
+        return Images.findOne(this.image_id);
+    }
+});
+
 Template.plantList.helpers({
     plants: function() {
         return Plant.find({user_id: Meteor.userId()});
@@ -6,7 +19,7 @@ Template.plantList.helpers({
         return Users.findOne(this.user_id);
     },
     picture: function() {
-        return Plant.findOne(this._id).picture();
+        return Plant.findOne(this._id).picture().url;
     }
 });
 
