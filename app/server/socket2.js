@@ -8,7 +8,8 @@ function MyWebSocketHandler(url, ws) {
         console.log(json);
         console.log(Date.now());
         if (json.data !== -1) {
-            Meteor.call('addNewMeasurement', Date.now(), json.hwid, json.type, json.data);
+            var timestamp = Date.now()
+            Meteor.call('addNewMeasurement', timestamp, json.hwid, json.type, json.data);
             var threshold = 2;
             var windowSize = 20;
             Meteor.call('eventDetection', threshold, windowSize, json.hwid, timestamp);
