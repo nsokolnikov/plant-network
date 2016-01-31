@@ -1,10 +1,9 @@
 Template.plantPopup.helpers({
-  info: function(){
-      console.log(Session.get('currentPopup'));
-      return Session.get('currentPopup');
-  },
+  //info: function(){
+      //return Session.get('currentPopup');
+  //},
     latestMoisture: function(plant_id){
-        console.log(plant_id);
+        console.log(this);
         var moistures = Measurements.find({plant_id:plant_id},{sort:{time:-1},limit:3600,skip:600}).fetch();
         if (moistures.length == 0) {
             var moisture = Measurements.findOne({plant_id:plant_id},{sort:{time:-1}});

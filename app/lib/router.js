@@ -49,7 +49,7 @@ privateRoutes.route('/:user_id/plants', {
 
 privateRoutes.route('/:user_id/nearby', {
     action: function (params, queryParams) {
-        BlazeLayout.render('plantMapTemplate', {mainContent: 'plantMapTemplate'});
+        BlazeLayout.render('plantMeasurementChart', {mainContent: 'plantMeasurementChart'});
     }
 });
 

@@ -1,7 +1,6 @@
 Template.plantAnnotation.events({
     "click": function() {
-        Session.set('currentPopup',this);
-        AntiModals.overlay('plantPopup',{});
+        AntiModals.overlay('plantPopup',{data:this});
     }
 });
 
