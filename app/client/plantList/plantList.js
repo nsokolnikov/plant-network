@@ -13,6 +13,8 @@ Template.plantCard.helpers({
     }
 });
 
+
+
 Template.plantList.helpers({
     plants: function() {
         return Plant.find({user_id: Meteor.userId()});

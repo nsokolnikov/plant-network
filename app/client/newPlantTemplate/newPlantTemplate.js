@@ -44,7 +44,7 @@ function isEmpty() {
     var serial = $('#serial').val();
     var office = $('#office').val();
 
-    if (nickname && serial && office) {
+    if (nickname && serial) {
         return false;
     } else {
         return true;
