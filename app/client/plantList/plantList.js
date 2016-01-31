@@ -1,4 +1,3 @@
-
 Template.plantCard.onCreated(function() {
     this.subscribe('imageFromPlant', this.data.image_id);
     $(document).ready(function(){
@@ -23,6 +22,9 @@ Template.plantList.helpers({
     },
     picture: function() {
         return Plant.findOne(this._id).picture().url;
+    },
+    office: function() {
+        return Plant.find(this.location);
     }
 });
 
