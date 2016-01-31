@@ -1,9 +1,15 @@
 <template name="plantList">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <div class="row">
-        {{#each plants}}
-            {{> plantCard}}
-        {{/each}}
+        {{#if route }}
+            {{#each plants}}
+                {{> plantCard}}
+            {{/each}}
+        {{else}}
+            {{#each userPlants}}
+                {{> plantCard}}
+            {{/each}}
+        {{/if}}
     </div>
 
     <a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>
@@ -17,7 +23,7 @@
             </div>
             <div class="card-title">
                 <span class="activator card-title grey-text text-darken-4">{{name}}</span>
-                <p>{{statusMessage.status}}"</p>
+                <p>{{statusMessage}}"</p>
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4" id="owner">

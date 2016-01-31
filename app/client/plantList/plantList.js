@@ -27,16 +27,26 @@ Template.plantCard.events({
         return Images.findOne(this.image_id);
     }
 });
-
-
-
+Template.plantList.onCreated(function() {
+   this.route = new ReactiveVar(FlowRouter.current().path);
+});
 Template.plantList.helpers({
-    plants: function() {
-        if (FlowRouter.current().path == '/' + Meteor.userId() + '/nearby') {
-            return Plant.find();
-        } else {
+    userPlants: function() {
+        var plants;
             return Plant.find({user_id: Meteor.userId()});
+
+    },
+    route: function() {
+        var pathRedirect = '/' + Meteor.userId() + '/nearby';
+        if(Template.instanc().route.get() === pathRedirect) {
+            return true;
+        } else {
+            return false;
         }
+    },
+    plants: function() {
+
+        return Plant.find();
     },
     owner: function() {
         return Users.findOne(this.user_id);

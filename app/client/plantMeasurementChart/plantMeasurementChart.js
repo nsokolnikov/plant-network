@@ -14,7 +14,7 @@ function updateData(){
 }
 
 function insertNewPoint() {
-    var points = Measurements.find().fetch();
+    var points = Measurements.find({plant_id: Plant.find({user_id: Meteor.userId()}).fetch()._id}).fetch();
     x=[];
     data=[];
     insertPoints(points);
