@@ -15,7 +15,7 @@ WebSocketsClient webSocket;
 #define GREEN_BUTTON 0
 
 #define CAPACITOR 2
-#define CAPACITOR_RATE 1000 //1 ms
+#define CAPACITOR_RATE 1000 //1 s
 
 uint64_t last_capacitor = 0L;
 
@@ -115,7 +115,7 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
     switch(type) {
         case WStype_DISCONNECTED:
             dbg_printf("[WSc] Disconnected!\n");
-            blink_off();
+            blink_mode = false;
             break;
             
         case WStype_CONNECTED:
@@ -181,7 +181,6 @@ void setup() {
     //74880 is chip default
     dbg_initserial(74880);
     init_LED();
-    pinMode(CAPACITOR, OUTPUT);
     
     //pinMode(GREEN_BUTTON, INPUT_PULLUP); 
     
@@ -204,13 +203,14 @@ void setup() {
 
     dbg_printf("CONNECTION ESTABLISHED. BEGINNING GROUND INVASION.\n");
 
-    webSocket.begin("192.168.43.132", 3000, "/sensorData");
+    webSocket.begin("planties.meteor.com", 80, "/sensorData");
     webSocket.onEvent(webSocketEvent);
 }
 
 long poll_capacitor() {
+    pinMode(CAPACITOR, OUTPUT);
     digitalWrite(CAPACITOR, HIGH);
-    delayMicroseconds(1000*1000);
+    delayMicroseconds(1000);
 
     uint64_t startm;
     uint64_t endm;

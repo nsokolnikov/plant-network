@@ -1,11 +1,11 @@
 <template name="plantPopup">
     <div class="popup">
-        <img class="avatar" src="{{info.picture.url}}">
+        <img class="avatar" src="{{this.picture.url}}">
         <div class="box">
             <div id="progressbar">
                 <div><div class="moisture">Moisture: {{latestMoisture info.id}}</div></div>
             </div>
         </div>
-        <div class="owner">Owner:{{info.user_id}}</div>
+        <div class="owner">Owners:{{this.user_id}}</div>
     </div>
 </template>

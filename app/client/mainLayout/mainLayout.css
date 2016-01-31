@@ -1,3 +1,13 @@
+.nav-wrapper{
+    background-color:#328A2E;
+}
+.btn{
+    background-color:#A8383B;
+}
+.h2{
+    background:#7D9F35;
+}
+
 body {
     background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/grad-bg.png") no-repeat center center/cover #F9D8AD;
     height: 100%;

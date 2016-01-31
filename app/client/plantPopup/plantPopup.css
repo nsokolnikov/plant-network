@@ -3,7 +3,7 @@
     background-color: azure;
     width: 20%;
     overflow:hidden;
-    position: absolute;
+    position: relative;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -16,27 +16,19 @@
 }
 
 .avatar {
-    position: absolute;
+    position: relative;
     overflow: hidden;
     /*top: 25%;*/
     left: 50%;
     transform: translate(-50%, 0%);
     width: 50%;
     height: 50%;
+    margin: auto;
     border-radius: 50%;
 }
 
-
-.moisture {
-    color: white;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    height: 20px;
-}
-
 .owner {
-    position: absolute;
+    position: relative;
     bottom: 5%;
     left: 5%;
     color: black;
@@ -46,10 +38,11 @@
 }
 
 .box {
-    position: absolute;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -60%);
+    position: relative;
+    /*top: 60%;*/
+    /*left: 50%;*/
+    margin: auto;
+    /*transform: translate(-50%, -60%);*/
     border-radius: 20px;
     height: 30px;
     width: 100px;
@@ -61,16 +54,17 @@
     padding: 2px;
 }
 #progressbar > div {
-    background-color: lawngreen;
-    width: 30%;
+    background-color: #5AAC56;
+    width: 50%;
     height: 18px;
     border: 1px solid rgba(0, 0, 0, 0);
     border-radius: 20px;
 }
 
 .moisture {
-    color: black;
-    position: absolute;
-    top: 20%;
-    right: 15%;
+    color: white;
+    position: relative;
+    /*top: 20%;*/
+    /*right: 15%;*/
+    margin: auto;
 }

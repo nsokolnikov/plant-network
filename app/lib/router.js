@@ -5,7 +5,7 @@ function checkLoggedIn(ctx, redirect) {
 }
 
 function redirectIfLoggedIn(ctx, redirect) {
-    console.log(ctx);
+    console.log(ctx)
     var _id = Meteor.userId();
     if (_id) {
         redirect('/' + _id + '/plants');
@@ -54,7 +54,7 @@ privateRoutes.route('/:user_id/plants', {
 
 privateRoutes.route('/:user_id/nearby', {
     action: function (params, queryParams) {
-        BlazeLayout.render('plantMapTemplate', {mainContent: 'plantMapTemplate'});
+        BlazeLayout.render('plantMeasurementChart', {mainContent: 'plantMeasurementChart'});
     }
 });
 
