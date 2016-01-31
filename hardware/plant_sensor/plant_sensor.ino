@@ -19,7 +19,7 @@ WebSocketsClient webSocket;
 
 uint64_t last_capacitor = 0L;
 
-#define CAPACITOR_BAILOUT 1000*10 //10 ms
+#define CAPACITOR_BAILOUT 1000*100 //100 ms
 
 #define NETWORK_NAME "WinterfellOTG"
 //Fite me irl
@@ -203,6 +203,7 @@ void setup() {
 
     dbg_printf("CONNECTION ESTABLISHED. BEGINNING GROUND INVASION.\n");
 
+    //webSocket.begin("192.168.43.215", 3000, "/sensorData");
     webSocket.begin("planties.meteor.com", 80, "/sensorData");
     webSocket.onEvent(webSocketEvent);
 }
