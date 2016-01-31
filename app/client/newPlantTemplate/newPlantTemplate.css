@@ -218,8 +218,8 @@ button {
     -webkit-transform: scale(100);
     -ms-transform: scale(100);
     transform: scale(100);
-    -webkit-transition: 2.25s all ease .9s;
-    transition: 2.25s all ease .9s;
+    -webkit-transition: 1.25s all ease .9s;
+    transition: 1.25s all ease .9s;
 }
 
 .layered-content {
