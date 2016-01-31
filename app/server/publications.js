@@ -1,6 +1,6 @@
 Meteor.publish('recentMeasurementByPlant', function (plant_id) {
     console.log(plant_id);
-    return Measurements.find({plant_id: plant_id}, {sort: {time: -1}, limit: 100});
+    return Measurements.find({plant_id: plant_id}, {sort: {time: -1}, limit: 60});
 });
 
 Meteor.publish('imageFromPlant', function(image_id) {

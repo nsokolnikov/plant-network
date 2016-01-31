@@ -21,7 +21,7 @@ Meteor.methods({
     'addNewMeasurement': function (time, plant_id, type, data) {
         var toInsert = {
             time: time,
-            plant_id: plant_id,
+            plant_id: '' + plant_id,
             type: type,
             data: data
         }
