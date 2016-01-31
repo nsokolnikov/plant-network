@@ -3,3 +3,9 @@
     bottom: 5%;
     right:5%;
 }
+
+
+
+.card-image {
+    max-height: 100%;
+}

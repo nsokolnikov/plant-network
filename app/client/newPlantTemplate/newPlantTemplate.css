@@ -2,11 +2,6 @@ html {
     height: 100%;
 }
 
-body {
-    /*background: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/111167/grad-bg.png") no-repeat center center/cover #F9D8AD;*/
-    height: 100%;
-}
-
 button:focus {
     outline: none;
 }
